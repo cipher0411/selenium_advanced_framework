@@ -1,0 +1,7 @@
+selenium
+pytest
+pytest-html
+pytest-xdist
+openpyxl
+webdriver-manager
+allure-pytest

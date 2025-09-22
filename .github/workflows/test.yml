@@ -1,0 +1,47 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install allure-pytest
+
+      - name: Run Selenium tests (Headless, Parallel) with Allure
+        run: |
+          pytest -v -n 2 --browser=chrome --headless --alluredir=allure-results
+
+      - name: Upload Allure Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: allure-results/
+
+      - name: Upload HTML Report (optional if you're still generating .html)
+        if: always()
+        run: |
+          pytest --browser=chrome --headless --html=report.html --self-contained-html
+        continue-on-error: true
+
+      - name: Upload HTML Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: selenium-html-report
+          path: report.html
