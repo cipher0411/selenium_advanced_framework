@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 Advanced Selenium Python Framework
 
 This is a **modern Selenium automation framework in Python** with **POM, Excel-driven testing, Allure reports, and GitHub Actions CI/CD integration**.  
@@ -24,3 +25,7 @@ This is a **modern Selenium automation framework in Python** with **POM, Excel-d
 pip install -r requirements.txt
 pytest -v -n 2 --browser=chrome --headless --alluredir=reports/allure-results
 allure serve reports/allure-results
+=======
+# selenium_advanced_framework
+Advanced Selenium Python Framework
+>>>>>>> 1310bb6964aaae2e7cc90dd590ad6d27140c1c57
